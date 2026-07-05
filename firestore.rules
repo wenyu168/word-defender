@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Leaderboard rules
+    match /leaderboard/{docId} {
+      // Allow read to see the leaderboard
+      allow read: if true;
+      
+      // Allow create with robust type and length verification
+      allow create: if request.resource.data.name is string 
+                    && request.resource.data.name.size() > 0 
+                    && request.resource.data.name.size() <= 100
+                    && request.resource.data.score is int;
+    }
+  }
+}
