@@ -1,0 +1,6 @@
+{
+  "name": "Word Defender",
+  "description": "An educational word-dropping game for elementary learners to practice spelling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
